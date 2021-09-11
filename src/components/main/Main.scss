@@ -1,0 +1,296 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_breakpoints.scss';
+
+.app-container {
+	max-width: $breakpoint-desktop;
+	margin: auto;
+	margin-top: -60px;
+}
+
+.hero {
+	background-image: $primary-blue-gradient;
+	padding-top: 100px;
+	margin-bottom: 120px;
+	overflow: hidden;
+	&-content-wrapper {
+		max-width: 1200px;
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0 24px;
+		@media (min-width: $breakpoint-tablet) {
+			justify-content: space-around;
+			flex-direction: row;
+		}
+	}
+	&-content {
+		text-align: center;
+		padding: 0;
+		@media (min-width: $breakpoint-tablet) {
+			padding: 0 32px;
+			text-align: left;
+			min-width: 400px;
+		}
+		//! change text to be calculated based on window size
+		h1 {
+			@media (min-width: $breakpoint-tablet-large) {
+				font-size: 50px;
+			}
+		}
+	}
+	&-img {
+		display: block;
+		filter: $drop-shadow;
+		background: url(https://res.cloudinary.com/obkidz/image/upload/v1623093162/Portfolio/hero%20mockups/BuzzTraq/buzztraq_mockup-03_yerj1y.png);
+		margin-top: 40px;
+		max-width: 350px;
+		width: 100%;
+		height: 450px;
+		background-size: cover;
+		@media (min-width: $breakpoint-tablet) {
+			height: 500px;
+			margin: 0;
+		}
+		@media (min-width: $breakpoint-tablet-large) {
+			height: 600px;
+			max-width: 425px;
+		}
+	}
+}
+
+.feature {
+	margin: 120px auto;
+	padding: 0 24px;
+	align-items: center;
+	&-text {
+		max-width: 600px;
+		@media (min-width: $breakpoint-tablet-large) {
+			padding: 0 24px;
+		}
+	}
+	h2 {
+		text-align: center;
+		@media (min-width: $breakpoint-tablet-large) {
+			text-align: left;
+		}
+	}
+}
+
+#feature-text-one {
+	margin: 0;
+	align-self: center;
+
+	@media (min-width: $breakpoint-tablet-large) {
+		align-self: flex-start;
+		margin: 100px 0 0 -60px;
+	}
+	h2 {
+		text-align: center;
+		@media (min-width: $breakpoint-tablet-large) {
+			text-align: left;
+		}
+	}
+}
+
+#feature-one {
+	// text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	@media (min-width: $breakpoint-tablet-large) {
+		flex-direction: row-reverse;
+	}
+}
+
+#feature-two {
+	padding: 64px 24px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	background-image: $primary-blue-gradient;
+	@media (min-width: $breakpoint-tablet-large) {
+		flex-direction: row;
+	}
+}
+#feature-three {
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	@media (min-width: $breakpoint-tablet-large) {
+		flex-direction: row-reverse;
+		justify-content: space-evenly;
+	}
+}
+
+.three-tiles {
+	text-align: center;
+	margin: 200px 0;
+}
+.tile-container {
+	display: flex;
+	align-items: center;
+	flex-flow: column;
+	justify-content: space-evenly;
+	max-width: 1200px;
+	padding-top: 24px;
+	margin-bottom: 60px;
+	@media (min-width: $breakpoint-tablet) {
+		flex-direction: row;
+		justify-content: space-around;
+		margin: auto;
+	}
+	div {
+		// background-color: gray;
+		border-radius: 10px;
+		box-shadow: -1px 5px 10px rgba(0, 0, 0, 0.2);
+		padding: 24px;
+		margin: 60px 0;
+	}
+
+	.tile {
+		width: 100px;
+		margin: 16px 0;
+	}
+
+	p {
+		text-align: center;
+		font-size: 20px;
+		color: $dark-blue-green;
+		margin: 0;
+	}
+}
+
+.styled-link {
+	text-decoration: none;
+	font-size: 20px;
+	color: $white;
+	font-weight: 400;
+	border-radius: 5px;
+	background-image: $button-darkblue-gradient;
+	display: flex;
+	width: 175px;
+	height: 50px;
+	align-items: center;
+	justify-content: center;
+	box-shadow: $box-shadow;
+	transition: all 0.2s ease;
+	margin: 32px auto;
+	@media (min-width: $breakpoint-tablet) {
+		margin: 32px 0;
+	}
+	&:hover {
+		transform: scale(1.04);
+	}
+	&:active {
+		background-image: $brown-gradient;
+	}
+}
+
+.feature-watch-still {
+	display: block;
+	// max-width: 250px;
+	max-width: 300px;
+	width: 70%;
+	margin: 40px 0;
+	filter: $drop-shadow-light;
+	@media (min-width: $breakpoint-tablet-large) {
+		margin: 0 24px;
+	}
+}
+
+.feature-phone-still {
+	margin: auto;
+	max-width: 100%;
+	filter: $drop-shadow-light;
+	@media (min-width: $breakpoint-tablet) {
+		max-width: 400px;
+		margin: 0;
+	}
+}
+
+.feature-animated-img {
+	z-index: -1;
+	margin: 0 -24px;
+	width: 100%;
+	max-width: 400px;
+	@media (min-width: $breakpoint-tablet) {
+		max-width: 550px;
+	}
+}
+
+.final-cta-img {
+	display: block;
+	max-width: 250px;
+	width: 90%;
+	margin: 40px auto;
+	filter: $drop-shadow-light;
+}
+
+.mid-page-hero {
+	width: 100%;
+	height: 500px;
+	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1625647530/Portfolio/hero%20mockups/BuzzTraq/buzztraq_footer_mockup_afhrpf.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	object-fit: cover;
+	background-position: 55% 50%;
+	&-content {
+		padding: 0px 32px;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		background-image: $black-fade-gradient;
+		@media (min-width: $breakpoint-tablet) {
+			padding: 32px;
+			justify-content: flex-start;
+			background-image: none;
+		}
+		h2 {
+			color: $white;
+			margin: 0;
+			@media (min-width: $breakpoint-tablet) {
+				color: $dark-blue-green;
+			}
+		}
+		a {
+			color: $white;
+			margin: 20px 0 40px;
+			font-weight: 600;
+			@media (min-width: $breakpoint-tablet) {
+				color: $dark-blue-green;
+			}
+		}
+		.middle-align {
+			margin-left: 5px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+}
+
+.final-cta {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin: 200px 0;
+	align-items: center;
+	padding: 0 24px;
+	@media (min-width: $breakpoint-tablet-large) {
+		flex-direction: row-reverse;
+	}
+	&-content {
+		max-width: 600px;
+		margin-top: 24px;
+		@media (min-width: $breakpoint-tablet-large) {
+			padding-left: 48px;
+		}
+		h1 {
+			text-align: center;
+			@media (min-width: $breakpoint-tablet-large) {
+				text-align: left;
+			}
+		}
+	}
+}

@@ -2,21 +2,28 @@
 @import '../../styles/_breakpoints';
 
 .navBar {
-	width: 100vw;
+	max-width: $breakpoint-desktop;
+	width: 100%;
+	margin: auto;
 	height: 60px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	position: absolute;
+	position: relative;
 	z-index: 3;
 	&-logo {
 		max-width: 125px;
-		margin-left: 10px;
+		margin-left: 24px;
+		&-fixed {
+			position: fixed;
+			left: 0;
+			top: 16px;
+		}
 	}
 }
 
 .menu-button {
-	margin-right: 15px;
+	margin-right: 24px;
 	outline: none;
 	border: none;
 	background-color: transparent;
@@ -41,6 +48,10 @@
 			transform: translate(0%, -50%);
 		}
 	}
+	&-fixed {
+		position: fixed;
+		right: 0;
+	}
 }
 
 .open-menu {
@@ -57,18 +68,19 @@
 
 .mobile-menu {
 	background-color: $white;
-	height: 250px;
+	padding-bottom: 24px;
+	height: 280px;
 	width: 100%;
-	position: absolute;
+	position: fixed;
 	top: 0px;
 	left: -100%;
 	z-index: 2;
-	transition: all 0.2s ease-in;
+	transition: all 0.2s ease-out;
 	&-links {
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: end;
+		justify-content: flex-end;
 		align-items: center;
 		a {
 			margin: 32px auto;
@@ -97,7 +109,7 @@
 }
 
 .page-shadow {
-	position: absolute;
+	position: fixed;
 	display: block;
 	z-index: 1;
 	height: 100vh;
@@ -109,5 +121,34 @@
 	&.fade-in {
 		background-color: rgba(0, 0, 0, 0.5);
 		pointer-events: all;
+	}
+}
+
+.desktop-menu-links {
+	justify-content: space-between;
+	align-items: center;
+	width: 325px;
+	display: none;
+	margin-right: 24px;
+	@media (min-width: $breakpoint-tablet) {
+		display: flex;
+		a {
+			font-size: 16px;
+			text-decoration: none;
+			color: $dark-blue-green;
+			position: relative;
+			&:hover,
+			&:active {
+				transition: all 0.1s ease-in;
+				text-decoration: double;
+				color: $light-brown;
+			}
+		}
+	}
+	#styled-link-desktop {
+		margin: 0;
+		color: $white;
+		width: 125px;
+		height: 45px;
 	}
 }

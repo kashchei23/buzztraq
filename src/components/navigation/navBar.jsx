@@ -17,10 +17,22 @@ const NavBar = () => {
 					<img
 						src='https://res.cloudinary.com/obkidz/image/upload/v1631066087/Portfolio/hero%20mockups/BuzzTraq/buzz-logo-dark_vv1wnx.png'
 						alt='buzztraq logo'
-						className='navBar-logo'
+						className={`navBar-logo ${menuIsOpen ? 'navBar-logo-fixed' : ''}`}
 					/>
 				</Link>
-				<button className='menu-button' onClick={handleClick}>
+				<div className='desktop-menu'>
+					<div className='desktop-menu-links'>
+						<Link to='/'>Home</Link>
+						<a href='/#feature-one'>Features</a>
+						<Link to='/signup' className='styled-link' id='styled-link-desktop'>
+							Sign Up
+						</Link>
+					</div>
+				</div>
+				<button
+					className={`menu-button ${menuIsOpen ? 'menu-button-fixed' : ''}`}
+					onClick={handleClick}
+				>
 					<div
 						className={`menu-button-bars ${menuIsOpen ? 'open-menu' : ''}`}
 					/>
@@ -40,7 +52,7 @@ const NavBar = () => {
 					<Link to='/' onClick={handleClick}>
 						Home
 					</Link>
-					<a href='/#feature' onClick={handleClick}>
+					<a href='/#feature-one' onClick={handleClick}>
 						Features
 					</a>
 					<Link to='/signup' onClick={handleClick}>
