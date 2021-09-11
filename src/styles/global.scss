@@ -1,0 +1,44 @@
+@import './normalize.scss';
+@import './_colors.scss';
+@import './_breakpoints.scss';
+
+$globalFont: open-sans, sans-serif;
+
+::before {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: $globalFont;
+}
+
+h1,
+h2,
+h3 {
+	color: $dark-blue-green;
+}
+h1 {
+	font-weight: 600;
+	font-size: 40px;
+}
+h2 {
+	font-weight: 500;
+	font-size: 2em;
+}
+h3 {
+	font-size: 24px;
+	font-weight: 400;
+}
+
+p {
+	color: $blue-green;
+	line-height: 2;
+	font-size: 18px;
+	@media (min-width: $breakpoint-tablet) {
+		font-size: 20px;
+	}
+}
+
+a {
+	line-height: 0;
+}
