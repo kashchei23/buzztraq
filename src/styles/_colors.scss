@@ -1,6 +1,6 @@
 $primary-blue-gradient: linear-gradient(215deg, #f0fbff, #9be5ff, #9be5ff);
-$button-darkblue-gradient: linear-gradient(to top, #273940, #4e7280);
-$secondary-darkblue-gradient: linear-gradient(to top, #273940, #39535d);
+$button-darkblue-gradient: linear-gradient(to top, #273940, #376c81);
+$secondary-darkblue-gradient: linear-gradient(to top, #273940, #376c81);
 $dark-blue-green: #273940;
 $black: #292929;
 $white: #ffffff;
@@ -14,6 +14,7 @@ $black-fade-gradient: linear-gradient(
 	rgba(0, 0, 0, 0.7),
 	black
 );
+$gray: rgb(206, 206, 206);
 
 // Shadow
 $drop-shadow: drop-shadow(-35px 30px 40px rgba(0, 0, 0, 0.6));

@@ -121,7 +121,7 @@ const Main = () => {
 						or worry about over-eating. Let us do the counting for you. Sign up
 						today for your free trial!
 					</p>
-					<Link to='/signup' className='styled-link'>
+					<Link to='/signup' className='styled-link final-cta-button'>
 						Sign up
 					</Link>
 				</div>

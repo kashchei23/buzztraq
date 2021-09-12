@@ -7,13 +7,13 @@ import Main from './components/main';
 import Footer from './components/footer';
 import SignUpForm from './components/signUpForm';
 import NavBar from './components/navigation';
+import ScrollUpButton from './components/utility';
 
 const App = () => {
-	// const myRef = useRef();
-
 	return (
 		<BrowserRouter>
 			<NavBar />
+			<ScrollUpButton />
 			<Switch>
 				<Route exact path='/'>
 					<Main />

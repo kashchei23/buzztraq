@@ -1,0 +1,150 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_breakpoints.scss';
+
+.signup {
+	background-image: $white;
+	padding-top: 60px;
+	margin: -60px auto;
+	overflow: hidden;
+	@media (min-width: $breakpoint-tablet) {
+		background-image: $primary-blue-gradient;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		padding: 100px 24px;
+		max-width: 1440px;
+	}
+	.signup-img {
+		display: none;
+		filter: $drop-shadow;
+		background: url(https://res.cloudinary.com/obkidz/image/upload/v1623093162/Portfolio/hero%20mockups/BuzzTraq/buzztraq_mockup-03_yerj1y.png);
+		margin-top: 40px;
+		width: 100%;
+		background-size: cover;
+		@media (min-width: $breakpoint-tablet) {
+			display: block;
+			height: 600px;
+			margin: 0;
+			max-width: 325px;
+		}
+		@media (min-width: $breakpoint-tablet-large) {
+			// height: 600px;
+			// max-width: 425px;
+		}
+	}
+}
+
+.signup-form {
+	padding: 24px;
+	@media (min-width: $breakpoint-tablet) {
+		z-index: 1;
+		max-width: 400px;
+		background-color: $white;
+		border-radius: 10px;
+		box-shadow: $box-shadow;
+	}
+	h2 {
+		text-align: center;
+	}
+	.input-wrapper {
+		position: relative;
+		margin: 64px 0;
+	}
+	.label {
+		position: absolute;
+		color: $blue-green;
+		transition: all 0.2s ease-out;
+		pointer-events: none;
+		bottom: 5px;
+		&-animated {
+			transition: all 0.2s ease-out;
+			bottom: 30px;
+			font-size: smaller;
+		}
+	}
+	input[type='text'] {
+		display: block;
+		outline: none;
+		border: none;
+		background-color: transparent;
+		border-bottom: 2px solid $dark-blue-green;
+		margin-bottom: 48px;
+		width: 100%;
+	}
+
+	input[type='checkbox'] {
+		width: 25px;
+		height: 25px;
+		margin-right: 15px;
+	}
+	.checkbox-label {
+		display: inline-block;
+		vertical-align: super;
+	}
+	.signup-button {
+		display: block;
+		font-size: 20px;
+		color: $white;
+		font-weight: 400;
+		outline: none;
+		border: none;
+		border-radius: 5px;
+		background-image: $button-darkblue-gradient;
+		width: 175px;
+		height: 50px;
+		box-shadow: $box-shadow;
+		transition: all 0.2s ease;
+		margin: 60px auto;
+		@media (min-width: $breakpoint-tablet) {
+			margin: 32px auto;
+		}
+		&:hover {
+			transform: scale(1.04);
+		}
+		&:active {
+			background-image: $brown-gradient;
+		}
+	}
+}
+
+.modal {
+	position: fixed;
+	z-index: 6;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 10px;
+	background: $white;
+	min-width: 250px;
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	box-shadow: $box-shadow;
+	text-align: center;
+	transition: all 0.2s ease;
+	padding: 24px;
+
+	&-shadow {
+		position: fixed;
+		display: block;
+		z-index: 5;
+		height: 100vh;
+		width: 100vw;
+		top: 0;
+		left: 0;
+		pointer-events: none;
+		transition: all 0.2s ease-in;
+		backdrop-filter: blur(2px);
+		-webkit-backdrop-filter: blur(2px);
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+	&-close {
+		font-size: smaller;
+		text-decoration: underline;
+		color: blue;
+		cursor: pointer;
+		margin-top: 24px;
+	}
+}
