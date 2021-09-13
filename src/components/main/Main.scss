@@ -1,36 +1,31 @@
 @import '../../styles/_colors.scss';
 @import '../../styles/_breakpoints.scss';
 
-.app-container {
-	max-width: $breakpoint-desktop;
-	margin: auto;
-	margin-top: -60px;
-}
-
 .hero {
 	background-image: $primary-blue-gradient;
-	padding-top: 100px;
+	padding-top: 60px;
 	margin-bottom: 120px;
 	overflow: hidden;
-	&-content-wrapper {
-		max-width: 1200px;
+	&-content {
+		max-width: 1440px;
 		margin: auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 0 24px;
+		padding: 20px 24px 0;
 		@media (min-width: $breakpoint-tablet) {
 			justify-content: space-around;
 			flex-direction: row;
 		}
 	}
-	&-content {
+	&-content-text {
 		text-align: center;
 		padding: 0;
 		@media (min-width: $breakpoint-tablet) {
 			padding: 0 32px;
 			text-align: left;
-			min-width: 400px;
+			align-self: center;
+			max-width: 600px;
 		}
 		//! change text to be calculated based on window size
 		h1 {
@@ -38,30 +33,34 @@
 				font-size: 50px;
 			}
 		}
+		p {
+			font-size: smaller;
+		}
 	}
-	&-img {
+	&-content-img {
 		display: block;
 		filter: $drop-shadow;
-		background: url(https://res.cloudinary.com/obkidz/image/upload/v1623093162/Portfolio/hero%20mockups/BuzzTraq/buzztraq_mockup-03_yerj1y.png);
-		margin-top: 40px;
-		max-width: 350px;
-		width: 100%;
-		height: 450px;
-		background-size: cover;
+		margin: 20px 0 -75px;
+		max-width: 220px;
 		@media (min-width: $breakpoint-tablet) {
-			height: 500px;
-			margin: 0;
+			max-width: 250px;
+			margin-bottom: -75px;
 		}
 		@media (min-width: $breakpoint-tablet-large) {
-			height: 600px;
-			max-width: 425px;
+			max-width: 350px;
+			margin-bottom: -125px;
 		}
 	}
 }
 
+.main {
+	h1 {
+		text-align: center;
+	}
+}
 .feature {
-	margin: 120px auto;
-	padding: 0 24px;
+	margin-bottom: 120px;
+	padding: 0 12px;
 	align-items: center;
 	&-text {
 		max-width: 600px;
@@ -75,11 +74,18 @@
 			text-align: left;
 		}
 	}
+	.feature-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		margin: auto;
+		max-width: 1440px;
+	}
 }
 
 #feature-text-one {
 	margin: 0;
-	align-self: center;
 
 	@media (min-width: $breakpoint-tablet-large) {
 		align-self: flex-start;
@@ -93,34 +99,22 @@
 	}
 }
 
-#feature-one {
-	// text-align: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+#feature-one,
+#feature-three {
 	@media (min-width: $breakpoint-tablet-large) {
 		flex-direction: row-reverse;
 	}
 }
 
 #feature-two {
-	padding: 64px 24px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	background-image: $primary-blue-gradient;
+	padding: 32px 12px;
 	@media (min-width: $breakpoint-tablet-large) {
 		flex-direction: row;
 	}
 }
-#feature-three {
-	padding: 24px;
-	display: flex;
-	flex-direction: column;
-	@media (min-width: $breakpoint-tablet-large) {
-		flex-direction: row-reverse;
-		justify-content: space-evenly;
-	}
+
+#feature-blue-bg {
+	background-image: $primary-blue-gradient;
 }
 
 .three-tiles {
@@ -140,22 +134,21 @@
 		justify-content: space-around;
 		margin: auto;
 	}
-	div {
-		// background-color: gray;
+	.tile {
 		border-radius: 10px;
 		box-shadow: -1px 5px 10px rgba(0, 0, 0, 0.2);
-		padding: 24px;
-		margin: 60px 0;
+		padding: 24px 12px;
+		margin: 16px 0;
+		width: 210px;
 	}
 
-	.tile {
+	.tile-img {
 		width: 75px;
 		margin: 16px 0;
 	}
 
 	p {
 		text-align: center;
-		font-size: 18px;
 		color: $dark-blue-green;
 		margin: 0;
 	}
@@ -163,21 +156,21 @@
 
 .styled-link {
 	text-decoration: none;
-	font-size: 20px;
+	font-size: 16px;
 	color: $white;
 	font-weight: 400;
 	border-radius: 5px;
 	background-image: $button-darkblue-gradient;
 	display: flex;
 	width: 175px;
-	height: 50px;
 	align-items: center;
 	justify-content: center;
 	box-shadow: $box-shadow;
 	transition: all 0.2s ease;
-	margin: 32px auto;
+	margin: 32px auto 16px;
+	padding: 16px 0;
 	@media (min-width: $breakpoint-tablet) {
-		margin: 32px 0;
+		margin: 32px 0 0;
 	}
 	&:hover {
 		transform: scale(1.04);
@@ -189,9 +182,8 @@
 
 .feature-watch-still {
 	display: block;
-	// max-width: 250px;
-	max-width: 300px;
-	width: 70%;
+	max-width: 250px;
+	width: 100%;
 	margin: 40px 0;
 	filter: $drop-shadow-light;
 	@media (min-width: $breakpoint-tablet-large) {
@@ -201,7 +193,8 @@
 
 .feature-phone-still {
 	margin: auto;
-	max-width: 100%;
+	max-width: 300px;
+	width: 100%;
 	filter: $drop-shadow-light;
 	@media (min-width: $breakpoint-tablet) {
 		max-width: 400px;
@@ -236,7 +229,7 @@
 	object-fit: cover;
 	background-position: 55% 50%;
 	&-content {
-		padding: 0px 32px;
+		padding: 0px 12px;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
@@ -247,20 +240,20 @@
 			justify-content: flex-start;
 			background-image: none;
 		}
-		h2 {
+		h1,
+		p,
+		a {
 			color: $white;
-			margin: 0;
 			@media (min-width: $breakpoint-tablet) {
 				color: $dark-blue-green;
 			}
 		}
+		h1 {
+			margin-bottom: 0;
+		}
 		a {
-			color: $white;
-			margin: 20px 0 40px;
+			margin-bottom: 24px;
 			font-weight: 600;
-			@media (min-width: $breakpoint-tablet) {
-				color: $dark-blue-green;
-			}
 		}
 		.middle-align {
 			margin-left: 5px;

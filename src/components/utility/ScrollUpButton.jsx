@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import smoothscroll from 'smoothscroll-polyfill';
 
 import './ScrollUpButton.scss';
-// import observeScroll from '../../utilities/observer';
 
 const ScrollUpButton = () => {
 	const scrollToTop = () => {
@@ -34,7 +33,7 @@ const ScrollUpButton = () => {
 	}, []);
 
 	return (
-		<div>
+		<>
 			<div className='scroll-target' />
 			<button
 				onClick={scrollToTop}
@@ -50,7 +49,7 @@ const ScrollUpButton = () => {
 					alt='scroll'
 				/>
 			</button>
-		</div>
+		</>
 	);
 };
 

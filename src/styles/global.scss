@@ -4,12 +4,14 @@
 
 $globalFont: open-sans, sans-serif;
 
-::before {
-	box-sizing: border-box;
-}
-
 html {
+	box-sizing: border-box;
 	font-family: $globalFont;
+}
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
 }
 
 h1,
@@ -17,28 +19,36 @@ h2,
 h3 {
 	color: $dark-blue-green;
 }
+
 h1 {
 	font-weight: 600;
-	font-size: 40px;
+	font-size: 36px;
+	@media (min-width: $breakpoint-tablet) {
+		font-weight: 600;
+		font-size: 40px;
+	}
 }
+
 h2 {
 	font-weight: 500;
-	font-size: 2em;
-}
-h3 {
 	font-size: 24px;
-	font-weight: 400;
+	@media (min-width: $breakpoint-tablet) {
+		font-weight: 500;
+		font-size: 32px;
+	}
+}
+
+h3 {
+	font-weight: 500;
+	font-size: 20px;
 }
 
 p {
 	color: $blue-green;
-	line-height: 2;
-	font-size: 18px;
+	line-height: 1.6;
+	font-size: 16px;
 	@media (min-width: $breakpoint-tablet) {
-		font-size: 20px;
+		line-height: 1.7;
+		font-size: 18px;
 	}
-}
-
-a {
-	line-height: 0;
 }

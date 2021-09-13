@@ -41,7 +41,7 @@ const Footer = () => {
 					<i className='fas fa-briefcase fa-3x' />
 				</a>
 			</div>
-			<p className='footer-footnote'>&copy; Daniel Brown 2021</p>
+			<p className='footer-footnote'>&copy; BuzzTraq 2021</p>
 		</footer>
 	);
 };
