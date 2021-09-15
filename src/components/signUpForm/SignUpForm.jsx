@@ -14,7 +14,6 @@ const initialPhoneState = '';
 const SignUpForm = () => {
 	const [user, setUser] = useState(initialState);
 	const [phone, setPhone] = useState(initialPhoneState);
-	const [regex, setRegex] = useState('');
 	const [isFocused, setFocus] = useState(false);
 	const [isSubmitted, setSubmitted] = useState(false);
 	const labelRefs = useRef([]);
@@ -57,8 +56,12 @@ const SignUpForm = () => {
 				value = e.target.value;
 				setUser({ ...user, [e.target.name]: value });
 				break;
-			case 'tel':
+			case 'number':
+				//* SETS RAW STRING VALUE TO PHONE VARIABLE
+				const MAXLENGTH = 11;
 				value = e.target.value;
+				console.log('63', typeof value);
+				if (value.length > MAXLENGTH) value = value.slice(0, MAXLENGTH);
 				setPhone(value);
 				break;
 			default:
@@ -100,13 +103,11 @@ const SignUpForm = () => {
 			removeStyles(inputName);
 		}
 
-		//* formats string onBlur
+		//* SETS FORMATTED STRING TO PHONE VARIABLE
 		if (inputName === 'phone' && inputValue) {
-			const formattedNumber = formatPhone(phone).number;
-			const generatedRegex = formatPhone(phone).regex;
-
+			const formattedNumber = formatPhone(inputValue);
+			console.log('109 formatted', formattedNumber, typeof formattedNumber);
 			setPhone(formattedNumber);
-			setRegex(generatedRegex);
 		}
 	};
 
@@ -158,10 +159,8 @@ const SignUpForm = () => {
 								Enter your phone number
 							</label>
 							<input
-								type='tel'
+								type='number'
 								name='phone'
-								maxLength={11}
-								pattern={regex}
 								title='Please only enter numbers. No spaces, dashes or special characters'
 								value={phone}
 								onChange={handleChange}

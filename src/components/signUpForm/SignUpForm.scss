@@ -58,7 +58,7 @@
 		}
 	}
 	input[type='text'],
-	input[type='tel'],
+	input[type='number'],
 	input[type='email'] {
 		display: block;
 		outline: none;
@@ -149,4 +149,10 @@
 		cursor: pointer;
 		margin-top: 24px;
 	}
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
