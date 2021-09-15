@@ -2,15 +2,19 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import './SignUpForm.scss';
+import { validateEmail, formatPhone } from './formValidation';
 
 const initialState = {
 	name: '',
-	phone: '',
 	email: '',
 	checkbox: false,
 };
+
+const initialPhoneState = '';
 const SignUpForm = () => {
 	const [user, setUser] = useState(initialState);
+	const [phone, setPhone] = useState(initialPhoneState);
+	const [regex, setRegex] = useState('');
 	const [isFocused, setFocus] = useState(false);
 	const [isSubmitted, setSubmitted] = useState(false);
 	const labelRefs = useRef([]);
@@ -42,25 +46,50 @@ const SignUpForm = () => {
 	};
 
 	const handleChange = (e) => {
-		const value =
-			e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-		setUser({ ...user, [e.target.name]: value });
+		let value;
+		switch (e.target.type) {
+			case 'checkbox':
+				value = e.target.checked;
+				setUser({ ...user, [e.target.name]: value });
+				break;
+			case 'email':
+			case 'text':
+				value = e.target.value;
+				setUser({ ...user, [e.target.name]: value });
+				break;
+			case 'tel':
+				value = e.target.value;
+				setPhone(value);
+				break;
+			default:
+				value = '';
+				break;
+		}
+		return value;
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log('Thanks', user.name);
-		setSubmitted(!isSubmitted);
-		console.log(isSubmitted);
+		if (validateEmail(user.email)) {
+			setSubmitted(!isSubmitted);
+		}
 	};
 
 	const handleFocus = (e) => {
 		const inputValue = e.target.value;
 		const inputName = e.target.name;
+
+		applyStyles(inputName);
+
 		if (inputValue === '') {
 			setFocus(!isFocused);
 		}
-		applyStyles(inputName);
+
+		// Instead of resetting field, try to remove dashes and
+		// reset back to all numbers
+		// if (inputName === 'phone') {
+		// 	setPhone('');
+		// }
 	};
 
 	const handleBlur = (e) => {
@@ -70,19 +99,30 @@ const SignUpForm = () => {
 			setFocus(!isFocused);
 			removeStyles(inputName);
 		}
+
+		//* formats string onBlur
+		if (inputName === 'phone' && inputValue) {
+			const formattedNumber = formatPhone(phone).number;
+			const generatedRegex = formatPhone(phone).regex;
+
+			setPhone(formattedNumber);
+			setRegex(generatedRegex);
+		}
 	};
 
-	// const resetForm = () => window.location.reload();
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	};
 
 	return (
-		<div>
+		<>
 			{isSubmitted ? (
 				<>
-					<div className='modal'>
+					<div className='modal modal-reveal'>
 						<h2>Thanks {user.name}!</h2>
 						<p>Check your email for confirmation!</p>
-						<Link to='/' className='modal-close'>
-							Close window
+						<Link to='/' className='modal-close' onClick={scrollToTop}>
+							Back to homepage
 						</Link>
 					</div>
 					<div className='modal-shadow' />
@@ -91,69 +131,82 @@ const SignUpForm = () => {
 				''
 			)}
 			<div className='signup'>
-				<form
-					className='signup-form'
-					autoComplete='off'
-					onSubmit={handleSubmit}
-				>
-					<h2>Sign up for a free trial</h2>
-					<div className='input-wrapper'>
-						<label ref={getRefs} data-name='name' className='label'>
-							Enter your name
-						</label>
+				<div className='signup-container'>
+					<form
+						className='signup-form'
+						autoComplete='off'
+						onSubmit={handleSubmit}
+					>
+						<h1>Sign up for a FREE trial!</h1>
+						<h3>Take charge of your health</h3>
+						<div className='input-wrapper'>
+							<label ref={getRefs} data-name='name' className='label'>
+								Enter your name
+							</label>
+							<input
+								type='text'
+								name='name'
+								value={user.name}
+								onChange={handleChange}
+								onFocus={handleFocus}
+								onBlur={handleBlur}
+								required
+							/>
+						</div>
+						<div className='input-wrapper'>
+							<label ref={getRefs} data-name='phone' className='label'>
+								Enter your phone number
+							</label>
+							<input
+								type='tel'
+								name='phone'
+								maxLength={11}
+								pattern={regex}
+								title='Please only enter numbers. No spaces, dashes or special characters'
+								value={phone}
+								onChange={handleChange}
+								onFocus={handleFocus}
+								onBlur={handleBlur}
+								required
+							/>
+						</div>
+						<div className='input-wrapper'>
+							<label ref={getRefs} data-name='email' className='label'>
+								Enter your email
+							</label>
+							<input
+								type='email'
+								name='email'
+								value={user.email}
+								onChange={handleChange}
+								onFocus={handleFocus}
+								onBlur={handleBlur}
+								required
+							/>
+						</div>
 						<input
-							type='text'
-							name='name'
-							value={user.name}
+							type='checkbox'
+							name='checkbox'
+							checked={user.checkbox}
 							onChange={handleChange}
-							onFocus={handleFocus}
-							onBlur={handleBlur}
-							required
 						/>
-					</div>
-					<div className='input-wrapper'>
-						<label ref={getRefs} data-name='phone' className='label'>
-							Enter your phone number
+						<label className='checkbox-label'>
+							Subscribe to our newsletter
 						</label>
-						<input
-							type='text'
-							name='phone'
-							value={user.phone}
-							onChange={handleChange}
-							onFocus={handleFocus}
-							onBlur={handleBlur}
-							required
-						/>
-					</div>
-					<div className='input-wrapper'>
-						<label ref={getRefs} data-name='email' className='label'>
-							Enter your email
-						</label>
-						<input
-							type='text'
-							name='email'
-							value={user.email}
-							onChange={handleChange}
-							onFocus={handleFocus}
-							onBlur={handleBlur}
-							required
-						/>
-					</div>
-					<input
-						type='checkbox'
-						name='checkbox'
-						checked={user.checkbox}
-						onChange={handleChange}
+						<button type='submit' className='signup-button'>
+							Submit
+						</button>
+					</form>
+					<img
+						src='https://res.cloudinary.com/obkidz/image/upload/v1631479060/Portfolio/hero%20mockups/BuzzTraq/buzztraq_mockup3_lj2j2z.png'
+						alt='buzztraq watch mockup'
+						className='signup-img'
 					/>
-					<label className='checkbox-label'>Subscribe to our newsletter</label>
-					<button type='submit' className='signup-button'>
-						Submit
-					</button>
-				</form>
-				<div className='signup-img' />
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
 export default SignUpForm;
+//251

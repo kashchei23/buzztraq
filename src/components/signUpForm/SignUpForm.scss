@@ -2,34 +2,30 @@
 @import '../../styles/_breakpoints.scss';
 
 .signup {
-	background-image: $white;
+	background-image: $primary-blue-gradient;
 	padding-top: 60px;
-	margin: -60px auto;
 	overflow: hidden;
-	@media (min-width: $breakpoint-tablet) {
-		background-image: $primary-blue-gradient;
+	&-container {
+		align-items: center;
+		max-width: 1440px;
+		margin: auto;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;
-		padding: 100px 24px;
-		max-width: 1440px;
+		padding-bottom: 60px;
+		@media (min-width: $breakpoint-tablet) {
+		}
 	}
-	.signup-img {
+	&-img {
 		display: none;
-		filter: $drop-shadow;
-		background: url(https://res.cloudinary.com/obkidz/image/upload/v1623093162/Portfolio/hero%20mockups/BuzzTraq/buzztraq_mockup-03_yerj1y.png);
-		margin-top: 40px;
 		width: 100%;
-		background-size: cover;
+		max-width: 220px;
 		@media (min-width: $breakpoint-tablet) {
 			display: block;
-			height: 600px;
-			margin: 0;
-			max-width: 325px;
+			max-width: 250px;
 		}
 		@media (min-width: $breakpoint-tablet-large) {
-			// height: 600px;
-			// max-width: 425px;
+			max-width: 350px;
 		}
 	}
 }
@@ -39,11 +35,10 @@
 	@media (min-width: $breakpoint-tablet) {
 		z-index: 1;
 		max-width: 400px;
-		background-color: $white;
 		border-radius: 10px;
-		box-shadow: $box-shadow;
 	}
-	h2 {
+	h1,
+	h3 {
 		text-align: center;
 	}
 	.input-wrapper {
@@ -62,12 +57,14 @@
 			font-size: smaller;
 		}
 	}
-	input[type='text'] {
+	input[type='text'],
+	input[type='tel'],
+	input[type='email'] {
 		display: block;
 		outline: none;
 		border: none;
 		background-color: transparent;
-		border-bottom: 2px solid $dark-blue-green;
+		border-bottom: 1px solid $dark-blue-green;
 		margin-bottom: 48px;
 		width: 100%;
 	}
@@ -90,7 +87,7 @@
 		border: none;
 		border-radius: 5px;
 		background-image: $button-darkblue-gradient;
-		width: 175px;
+		width: 100%;
 		height: 50px;
 		box-shadow: $box-shadow;
 		transition: all 0.2s ease;
@@ -123,8 +120,13 @@
 	flex-direction: column;
 	box-shadow: $box-shadow;
 	text-align: center;
-	transition: all 0.2s ease;
+	transition: all 1.2s ease;
 	padding: 24px;
+	opacity: 0;
+	&-reveal {
+		transition: all 1.2s ease;
+		opacity: 1;
+	}
 
 	&-shadow {
 		position: fixed;

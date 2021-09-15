@@ -17,7 +17,6 @@ const ScrollUpButton = () => {
 		} else {
 			setVisibility(true);
 		}
-		console.log(entry.isIntersecting);
 	};
 	const observeScroll = (element, callback) => {
 		const observer = new IntersectionObserver((entries) => {

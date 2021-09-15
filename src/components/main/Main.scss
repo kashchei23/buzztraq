@@ -27,7 +27,6 @@
 			align-self: center;
 			max-width: 600px;
 		}
-		//! change text to be calculated based on window size
 		h1 {
 			@media (min-width: $breakpoint-tablet-large) {
 				font-size: 50px;
@@ -43,7 +42,7 @@
 		margin: 20px 0 -75px;
 		max-width: 220px;
 		@media (min-width: $breakpoint-tablet) {
-			max-width: 250px;
+			max-width: 275px;
 			margin-bottom: -75px;
 		}
 		@media (min-width: $breakpoint-tablet-large) {
@@ -86,16 +85,9 @@
 
 #feature-text-one {
 	margin: 0;
-
 	@media (min-width: $breakpoint-tablet-large) {
 		align-self: flex-start;
 		margin: 100px 0 0 -60px;
-	}
-	h2 {
-		text-align: center;
-		@media (min-width: $breakpoint-tablet-large) {
-			text-align: left;
-		}
 	}
 }
 

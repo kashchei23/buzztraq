@@ -2,9 +2,6 @@
 @import '../../styles/_breakpoints';
 
 .navBar {
-	// max-width: $breakpoint-desktop;
-	// background-color: $white;
-	// border-bottom: 1px solid $dark-blue-green;
 	width: 100%;
 	margin: auto;
 	height: 60px;
@@ -13,7 +10,6 @@
 	align-items: center;
 	position: fixed;
 	position: absolute;
-	// backdrop-filter: blur(6px);
 	z-index: 3;
 	&-logo {
 		max-width: 125px;
