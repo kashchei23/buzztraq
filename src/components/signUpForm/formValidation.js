@@ -2,23 +2,19 @@ export const validateEmail = (elementValue) => {
 	const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 	return emailPattern.test(elementValue);
 };
-
-// const regexObj = {
-// 	regexSeven: '[2-9]{1}[0-9]{2}-[0-9]{4}',
-// 	regexTen: '[2-9]{1}[0-9]{2}-[0-9]{3}-[0-9]{4}',
-// 	regexEleven: `[1]{1}-[2-9]{1}[0-9]{2}-[0-9]{3}-[0-9]{4}`,
-// };
+export const validateNumber = (elementValue) => {
+	const phonePattern =
+		/^([1]{1})?[-]?([2-9]{1}\d{2})[-]?([2-9]{1}\d{2})[-]?(\d{4})$/;
+	console.log('validating');
+	return phonePattern.test(elementValue);
+};
 
 //* FORMATS NUMBER WITH DASHES '-'
 export const formatPhone = (digit) => {
 	if (digit) {
 		const digitString = digit.toString();
 		const digitLength = digit.toString().length;
-		if (digitLength <= 7) {
-			const phone =
-				digitString.substring(0, 3) + '-' + digitString.substring(3, 7);
-			return phone;
-		} else if (digitLength >= 8 && digitLength <= 10) {
+		if (digitLength === 10) {
 			const phone =
 				digitString.substring(0, 3) +
 				'-' +
@@ -36,10 +32,6 @@ export const formatPhone = (digit) => {
 				'-' +
 				digitString.substring(7, 11);
 			return phone;
-		} else {
-			const phone = digit;
-			return phone;
 		}
 	}
 };
-console.log(formatPhone(2342344), typeof formatPhone(2342344));

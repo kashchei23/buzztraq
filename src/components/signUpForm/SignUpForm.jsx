@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import './SignUpForm.scss';
-import { validateEmail, formatPhone } from './formValidation';
+import { validateEmail, validateNumber, formatPhone } from './formValidation';
 
 const initialState = {
 	name: '',
@@ -15,9 +15,16 @@ const SignUpForm = () => {
 	const [user, setUser] = useState(initialState);
 	const [phone, setPhone] = useState(initialPhoneState);
 	const [isFocused, setFocus] = useState(false);
+	const [inputStatusMsg, setInputStatusMsg] = useState('');
+	const [phoneIsValid, setPhoneIsValid] = useState(false);
 	const [isSubmitted, setSubmitted] = useState(false);
 	const labelRefs = useRef([]);
 	labelRefs.current = [];
+
+	useEffect(() => {
+		console.log('phoneIsValid', phoneIsValid);
+		setPhoneIsValid(validateNumber(phone));
+	}, [phone, phoneIsValid]);
 
 	const getRefs = (el) => {
 		if (el && !labelRefs.current.includes(el)) {
@@ -56,11 +63,10 @@ const SignUpForm = () => {
 				value = e.target.value;
 				setUser({ ...user, [e.target.name]: value });
 				break;
-			case 'number':
+			case 'tel':
 				//* SETS RAW STRING VALUE TO PHONE VARIABLE
 				const MAXLENGTH = 11;
 				value = e.target.value;
-				console.log('63', typeof value);
 				if (value.length > MAXLENGTH) value = value.slice(0, MAXLENGTH);
 				setPhone(value);
 				break;
@@ -73,7 +79,7 @@ const SignUpForm = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (validateEmail(user.email)) {
+		if (validateEmail(user.email) && validateNumber(phone)) {
 			setSubmitted(!isSubmitted);
 		}
 	};
@@ -83,16 +89,15 @@ const SignUpForm = () => {
 		const inputName = e.target.name;
 
 		applyStyles(inputName);
-
+		console.log(inputValue);
 		if (inputValue === '') {
 			setFocus(!isFocused);
 		}
 
-		// Instead of resetting field, try to remove dashes and
-		// reset back to all numbers
-		// if (inputName === 'phone') {
-		// 	setPhone('');
-		// }
+		//* Reset phone number with no dashes
+		if (inputName === 'phone') {
+			setPhone(inputValue.replace(/-/g, ''));
+		}
 	};
 
 	const handleBlur = (e) => {
@@ -102,15 +107,21 @@ const SignUpForm = () => {
 			setFocus(!isFocused);
 			removeStyles(inputName);
 		}
-
-		//* SETS FORMATTED STRING TO PHONE VARIABLE
+		//* SETS FORMATTED STRING TO PHONE VARIABLE, VALIDATES
 		if (inputName === 'phone' && inputValue) {
 			const formattedNumber = formatPhone(inputValue);
-			console.log('109 formatted', formattedNumber, typeof formattedNumber);
 			setPhone(formattedNumber);
+
+			setInputStatusMsg(
+				phoneIsValid
+					? 'VALID!'
+					: 'PLEASE ENTER A VALID NUMBER INCLUDING AREA CODE'
+			);
+			setTimeout(() => {
+				setInputStatusMsg('');
+			}, 3000);
 		}
 	};
-
 	const scrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
@@ -159,7 +170,7 @@ const SignUpForm = () => {
 								Enter your phone number
 							</label>
 							<input
-								type='number'
+								type='tel'
 								name='phone'
 								title='Please only enter numbers. No spaces, dashes or special characters'
 								value={phone}
@@ -168,6 +179,13 @@ const SignUpForm = () => {
 								onBlur={handleBlur}
 								required
 							/>
+							<div
+								className={`input-status-message ${
+									phoneIsValid ? 'valid' : 'error'
+								}`}
+							>
+								{inputStatusMsg}
+							</div>
 						</div>
 						<div className='input-wrapper'>
 							<label ref={getRefs} data-name='email' className='label'>

@@ -58,7 +58,7 @@
 		}
 	}
 	input[type='text'],
-	input[type='number'],
+	input[type='tel'],
 	input[type='email'] {
 		display: block;
 		outline: none;
@@ -151,8 +151,23 @@
 	}
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+.input-status-message {
+	position: absolute;
+	font-size: 12px;
+	font-weight: 600;
+	bottom: -25px;
+}
+.error {
+	color: #d70000;
+}
+.valid {
+	color: green;
+}
+
+.hide {
+	visibility: hidden;
+}
+
+.show {
+	visibility: visible;
 }
