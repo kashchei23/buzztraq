@@ -1,16 +1,15 @@
 export const validateEmail = (elementValue) => {
-	const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-	return emailPattern.test(elementValue);
+	const EMAIL_PATTERN = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+	return EMAIL_PATTERN.test(elementValue);
 };
-export const validateNumber = (elementValue) => {
-	const phonePattern =
+export const validatePhoneNumber = (elementValue) => {
+	const PHONE_PATTERN =
 		/^([1]{1})?[-]?([2-9]{1}\d{2})[-]?([2-9]{1}\d{2})[-]?(\d{4})$/;
-	console.log('validating');
-	return phonePattern.test(elementValue);
+	return PHONE_PATTERN.test(elementValue);
 };
 
-//* FORMATS NUMBER WITH DASHES '-'
-export const formatPhone = (digit) => {
+//* AUTO-FORMAT INPUT NUMBER WITH DASHES
+export const formatPhoneNumber = (digit) => {
 	if (digit) {
 		const digitString = digit.toString();
 		const digitLength = digit.toString().length;
@@ -31,6 +30,9 @@ export const formatPhone = (digit) => {
 				digitString.substring(4, 7) +
 				'-' +
 				digitString.substring(7, 11);
+			return phone;
+		} else {
+			const phone = digit;
 			return phone;
 		}
 	}

@@ -2,9 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import './SignUpForm.scss';
-import { validateEmail, validateNumber, formatPhone } from './formValidation';
+import {
+	validateEmail,
+	validatePhoneNumber,
+	formatPhoneNumber,
+} from '../../utility/formValidation';
 
-const initialState = {
+const initialUserState = {
 	name: '',
 	email: '',
 	checkbox: false,
@@ -12,19 +16,53 @@ const initialState = {
 
 const initialPhoneState = '';
 const SignUpForm = () => {
-	const [user, setUser] = useState(initialState);
+	const [user, setUser] = useState(initialUserState);
 	const [phone, setPhone] = useState(initialPhoneState);
-	const [isFocused, setFocus] = useState(false);
+	const [isFocused, setIsFocused] = useState(false);
 	const [inputStatusMsg, setInputStatusMsg] = useState('');
+	const [emailStatusMsg, setEmailStatusMsg] = useState('');
 	const [phoneIsValid, setPhoneIsValid] = useState(false);
+	const [emailIsValid, setEmailIsValid] = useState(false);
 	const [isSubmitted, setSubmitted] = useState(false);
+	const activeInput = document.activeElement;
+	const phoneRef = useRef(null);
+	const myRef = useRef('');
 	const labelRefs = useRef([]);
 	labelRefs.current = [];
 
 	useEffect(() => {
-		console.log('phoneIsValid', phoneIsValid);
-		setPhoneIsValid(validateNumber(phone));
+		setPhoneIsValid(validatePhoneNumber(phone));
 	}, [phone, phoneIsValid]);
+
+	useEffect(() => {
+		setEmailIsValid(validateEmail(user.email));
+	}, [user.email, emailIsValid]);
+
+	useEffect(() => {
+		if (isFocused) {
+			animatePlaceholder(myRef.current.name);
+		} else if (!isFocused && myRef.current.value === '') {
+			removePlaceholderAnimation(myRef.current.name);
+		}
+	}, [activeInput, isFocused, myRef]);
+	//* REMOVES DASHES FROM PHONE NUMBER FOR USER EDITING
+	useEffect(() => {
+		if (
+			isFocused &&
+			myRef.current.name === 'phone' &&
+			myRef.current.value !== ''
+		) {
+			setPhone(myRef.current.value.replace(/-/g, ''));
+		}
+	}, [isFocused, myRef]);
+
+	//* ADDS DASHES TO PHONE NUMBER
+	useEffect(() => {
+		const formattedNumber = formatPhoneNumber(phone);
+		if (phoneIsValid && !isFocused) {
+			setPhone(formattedNumber);
+		}
+	}, [phone, phoneIsValid, isFocused]);
 
 	const getRefs = (el) => {
 		if (el && !labelRefs.current.includes(el)) {
@@ -32,7 +70,8 @@ const SignUpForm = () => {
 		}
 	};
 
-	const applyStyles = (inputName) => {
+	//* APPLY SLIDE UP EFFECT TO INPUT PLACEHOLDER TEXT
+	const animatePlaceholder = (inputName) => {
 		for (let i = 0; i < labelRefs.current.length; i++) {
 			const labelName = labelRefs.current[i].dataset.name;
 			const label = labelRefs.current[i];
@@ -41,7 +80,9 @@ const SignUpForm = () => {
 			}
 		}
 	};
-	const removeStyles = (inputName) => {
+
+	//* APPLY SLIDE UP EFFECT TO INPUT PLACEHOLDER TEXT
+	const removePlaceholderAnimation = (inputName) => {
 		for (let i = 0; i < labelRefs.current.length; i++) {
 			const labelName = labelRefs.current[i].dataset.name;
 			const label = labelRefs.current[i];
@@ -51,6 +92,7 @@ const SignUpForm = () => {
 		}
 	};
 
+	//* SET STATES OF INPUT VALUES
 	const handleChange = (e) => {
 		let value;
 		switch (e.target.type) {
@@ -64,7 +106,6 @@ const SignUpForm = () => {
 				setUser({ ...user, [e.target.name]: value });
 				break;
 			case 'tel':
-				//* SETS RAW STRING VALUE TO PHONE VARIABLE
 				const MAXLENGTH = 11;
 				value = e.target.value;
 				if (value.length > MAXLENGTH) value = value.slice(0, MAXLENGTH);
@@ -79,39 +120,30 @@ const SignUpForm = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (validateEmail(user.email) && validateNumber(phone)) {
+		if (validateEmail(user.email) && validatePhoneNumber(phone)) {
 			setSubmitted(!isSubmitted);
+		} else {
+			displayStatusMsg(myRef.current.name, myRef.current.value);
 		}
 	};
 
+	//* FOCUS
 	const handleFocus = (e) => {
-		const inputValue = e.target.value;
-		const inputName = e.target.name;
+		myRef.current = e.target;
+		setIsFocused(true);
+		console.log(myRef.current);
+	};
 
-		applyStyles(inputName);
-		console.log(inputValue);
-		if (inputValue === '') {
-			setFocus(!isFocused);
-		}
-
-		//* Reset phone number with no dashes
-		if (inputName === 'phone') {
-			setPhone(inputValue.replace(/-/g, ''));
+	//* BLUR
+	const handleBlur = () => {
+		setIsFocused(false);
+		if (myRef.current.value) {
+			displayStatusMsg(myRef.current.name, myRef.current.value);
 		}
 	};
 
-	const handleBlur = (e) => {
-		const inputValue = e.target.value;
-		const inputName = e.target.name;
-		if (inputValue === '') {
-			setFocus(!isFocused);
-			removeStyles(inputName);
-		}
-		//* SETS FORMATTED STRING TO PHONE VARIABLE, VALIDATES
-		if (inputName === 'phone' && inputValue) {
-			const formattedNumber = formatPhone(inputValue);
-			setPhone(formattedNumber);
-
+	const displayStatusMsg = (inputName) => {
+		if (inputName === 'phone') {
 			setInputStatusMsg(
 				phoneIsValid
 					? 'VALID!'
@@ -121,7 +153,16 @@ const SignUpForm = () => {
 				setInputStatusMsg('');
 			}, 3000);
 		}
+		if (inputName === 'email') {
+			setEmailStatusMsg(
+				emailIsValid ? 'VALID!' : 'PLEASE ENTER A VALID EMAIL ADDRESS'
+			);
+			setTimeout(() => {
+				setEmailStatusMsg('');
+			}, 3000);
+		}
 	};
+
 	const scrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
@@ -170,6 +211,7 @@ const SignUpForm = () => {
 								Enter your phone number
 							</label>
 							<input
+								ref={phoneRef}
 								type='tel'
 								name='phone'
 								title='Please only enter numbers. No spaces, dashes or special characters'
@@ -200,6 +242,13 @@ const SignUpForm = () => {
 								onBlur={handleBlur}
 								required
 							/>
+							<div
+								className={`input-status-message ${
+									emailIsValid ? 'valid' : 'error'
+								}`}
+							>
+								{emailStatusMsg}
+							</div>
 						</div>
 						<input
 							type='checkbox'
@@ -226,4 +275,3 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
-//251

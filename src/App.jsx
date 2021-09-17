@@ -7,11 +7,13 @@ import Main from './components/main';
 import Footer from './components/footer';
 import SignUpForm from './components/signUpForm';
 import NavBar from './components/navigation';
+import OpenHero from './components/openHero/OpenHero';
 import ScrollUpButton from './components/utility';
 
 const App = () => {
 	return (
 		<BrowserRouter>
+			<OpenHero />
 			<NavBar />
 			<ScrollUpButton />
 			<Switch>

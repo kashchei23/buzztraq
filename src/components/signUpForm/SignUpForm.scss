@@ -7,13 +7,15 @@
 	overflow: hidden;
 	&-container {
 		align-items: center;
-		max-width: 1440px;
+		max-width: 1000px;
 		margin: auto;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-evenly;
-		padding-bottom: 60px;
+		display: block;
+		padding: 0 12px 60px;
 		@media (min-width: $breakpoint-tablet) {
+			justify-content: space-evenly;
+			flex-direction: row;
+			display: flex;
+			padding: 0 0 60px;
 		}
 	}
 	&-img {
@@ -24,18 +26,31 @@
 			display: block;
 			max-width: 250px;
 		}
-		@media (min-width: $breakpoint-tablet-large) {
-			max-width: 350px;
-		}
 	}
 }
 
 .signup-form {
-	padding: 24px;
+	padding: 24px 0;
+	max-width: 500px;
+	margin: auto;
+	width: 100%;
 	@media (min-width: $breakpoint-tablet) {
+		margin: 0;
 		z-index: 1;
-		max-width: 400px;
+		max-width: 500px;
 		border-radius: 10px;
+	}
+	h1 {
+		font-size: 28px;
+		@media (min-width: $breakpoint-tablet) {
+			font-size: 32px;
+		}
+	}
+	h3 {
+		font-size: 18px;
+		@media (min-width: $breakpoint-tablet) {
+			font-size: 20px;
+		}
 	}
 	h1,
 	h3 {
@@ -43,7 +58,7 @@
 	}
 	.input-wrapper {
 		position: relative;
-		margin: 64px 0;
+		margin: 60px 0;
 	}
 	.label {
 		position: absolute;
@@ -65,7 +80,7 @@
 		border: none;
 		background-color: transparent;
 		border-bottom: 1px solid $dark-blue-green;
-		margin-bottom: 48px;
+		// margin-bottom: 48px;
 		width: 100%;
 	}
 
@@ -91,7 +106,7 @@
 		height: 50px;
 		box-shadow: $box-shadow;
 		transition: all 0.2s ease;
-		margin: 60px auto;
+		margin: 40px auto 60px;
 		@media (min-width: $breakpoint-tablet) {
 			margin: 32px auto;
 		}
@@ -136,7 +151,6 @@
 		width: 100vw;
 		top: 0;
 		left: 0;
-		pointer-events: none;
 		transition: all 0.2s ease-in;
 		backdrop-filter: blur(2px);
 		-webkit-backdrop-filter: blur(2px);
@@ -145,7 +159,7 @@
 	&-close {
 		font-size: smaller;
 		text-decoration: underline;
-		color: blue;
+		color: $blue;
 		cursor: pointer;
 		margin-top: 24px;
 	}
@@ -158,16 +172,8 @@
 	bottom: -25px;
 }
 .error {
-	color: #d70000;
+	color: $red;
 }
 .valid {
-	color: green;
-}
-
-.hide {
-	visibility: hidden;
-}
-
-.show {
-	visibility: visible;
+	color: $green;
 }
