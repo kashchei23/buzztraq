@@ -43,11 +43,10 @@
 		max-width: 220px;
 		@media (min-width: $breakpoint-tablet) {
 			max-width: 275px;
-			margin-bottom: -75px;
 		}
 		@media (min-width: $breakpoint-tablet-large) {
 			max-width: 350px;
-			margin-bottom: -125px;
+			margin-bottom: 20px 0 -125px;
 		}
 	}
 }

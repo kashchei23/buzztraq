@@ -7,17 +7,17 @@ import Main from './components/main';
 import Footer from './components/footer';
 import SignUpForm from './components/signUpForm';
 import NavBar from './components/navigation';
-import OpenHero from './components/openHero/OpenHero';
+import SplashPage from './components/splash/SplashPage';
 import ScrollUpButton from './components/utility';
 
 const App = () => {
 	return (
 		<BrowserRouter>
-			<OpenHero />
 			<NavBar />
 			<ScrollUpButton />
 			<Switch>
 				<Route exact path='/'>
+					<SplashPage />
 					<Main />
 				</Route>
 				<Route path='/signup'>
