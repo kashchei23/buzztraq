@@ -260,7 +260,7 @@ const SignUpForm = () => {
 							Subscribe to our newsletter
 						</label>
 						<button type='submit' className='signup-button'>
-							Submit
+							SUBMIT
 						</button>
 					</form>
 					<img

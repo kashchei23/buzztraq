@@ -10,12 +10,12 @@
 		max-width: 1000px;
 		margin: auto;
 		display: block;
-		padding: 0 12px 60px;
+		padding: 0 24px 60px;
 		@media (min-width: $breakpoint-tablet) {
 			justify-content: space-evenly;
 			flex-direction: row;
 			display: flex;
-			padding: 0 0 60px;
+			padding: 0 24px 60px;
 		}
 	}
 	&-img {
@@ -39,7 +39,7 @@
 		z-index: 1;
 		max-width: 500px;
 		border-radius: 10px;
-		padding: 24px 40px;
+		padding: 24px 40px 24px 0;
 	}
 	h1 {
 		font-size: 28px;
@@ -99,7 +99,7 @@
 	}
 	.signup-button {
 		display: block;
-		font-size: 20px;
+		font-size: 18px;
 		color: $white;
 		font-weight: 400;
 		outline: none;

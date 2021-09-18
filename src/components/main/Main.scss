@@ -58,7 +58,7 @@
 }
 .feature {
 	margin-bottom: 120px;
-	padding: 0 12px;
+	padding: 0 24px;
 	align-items: center;
 	&-text {
 		max-width: 600px;
@@ -98,8 +98,9 @@
 }
 
 #feature-two {
-	padding: 32px 12px;
+	padding: 32px 0;
 	@media (min-width: $breakpoint-tablet-large) {
+		padding: 32px 12px;
 		flex-direction: row;
 	}
 }
@@ -111,6 +112,7 @@
 .three-tiles {
 	text-align: center;
 	margin: 200px 0;
+	padding: 0 24px;
 }
 .tile-container {
 	display: flex;
@@ -220,7 +222,7 @@
 	object-fit: cover;
 	background-position: 55% 50%;
 	&-content {
-		padding: 0px 12px;
+		padding: 0px 24px;
 		height: 100%;
 		display: flex;
 		flex-direction: column;

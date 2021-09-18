@@ -7,7 +7,6 @@ import Main from './components/main';
 import Footer from './components/footer';
 import SignUpForm from './components/signUpForm';
 import NavBar from './components/navigation';
-import SplashPage from './components/splash/SplashPage';
 import ScrollUpButton from './components/utility';
 
 const App = () => {
@@ -17,7 +16,6 @@ const App = () => {
 			<ScrollUpButton />
 			<Switch>
 				<Route exact path='/'>
-					<SplashPage />
 					<Main />
 				</Route>
 				<Route path='/signup'>
