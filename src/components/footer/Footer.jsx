@@ -7,7 +7,7 @@ const Footer = () => {
 		<footer className='footer'>
 			<Link to='/'>
 				<img
-					src='https://res.cloudinary.com/obkidz/image/upload/v1631072728/Portfolio/hero%20mockups/BuzzTraq/buzz-logo-white_ifcffz.png'
+					src='https://res.cloudinary.com/obkidz/image/upload/v1631941382/buzztraq/buzz-logo-white.png'
 					alt='buzztraq logo'
 					className='footer-logo'
 				/>
