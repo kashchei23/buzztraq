@@ -1,0 +1,25 @@
+$primary-blue-gradient: linear-gradient(215deg, #f0fbff, #9be5ff, #9be5ff);
+$button-darkblue-gradient: linear-gradient(to top, #273940, #376c81);
+$secondary-darkblue-gradient: linear-gradient(to top, #172226, #376c81);
+$dark-blue-green: #273940;
+$black: #292929;
+$white: #ffffff;
+$blue: #0000ff;
+$red: #d70000;
+$green: #008000;
+$blue-green: #3f616e;
+$light-blue: #f0fbff;
+$light-brown: #9f5c00;
+$brown-gradient: linear-gradient(to top, #9f5c00, #e39c5f);
+$darkbrown-gradient: linear-gradient(to top, #844d00, #d89357);
+$black-fade-gradient: linear-gradient(
+	transparent 45%,
+	rgba(0, 0, 0, 0.7),
+	black
+);
+$gray: rgb(206, 206, 206);
+
+// Shadow
+$drop-shadow: drop-shadow(-35px 30px 40px rgba(0, 0, 0, 0.6));
+$drop-shadow-light: drop-shadow(-45px 30px 30px rgba(0, 0, 0, 0.4));
+$box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
