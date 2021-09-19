@@ -1,0 +1,67 @@
+@import '../../styles/_colors';
+@import '../../styles/_breakpoints';
+@import '../../styles/_transitions';
+
+.scroll-btn {
+	z-index: 4;
+	background-color: $gray;
+	border: none;
+	bottom: -100px;
+	opacity: 0.6;
+	position: fixed;
+	right: 15px;
+	border-radius: 50px;
+	height: 50px;
+	width: 50px;
+	line-height: 0;
+	padding: 15px;
+	@media (min-width: $breakpoint-mobile) {
+		right: 25px;
+	}
+	&:hover {
+		transition: $easings-timing-fast;
+		opacity: 1;
+		.scroll-button-image {
+			transition: $easings-timing-fast;
+		}
+	}
+}
+.scroll-button-image {
+	pointer-events: none;
+	width: 100%;
+}
+
+.hide-scroll {
+	transition: $easings-timing-slow;
+	opacity: 0;
+}
+
+.show-scroll {
+	transition: $easings-timing-slow;
+	opacity: 0.6;
+	bottom: 10px;
+	right: 15px;
+	@media (min-width: $breakpoint-mobile) {
+		right: 25px;
+		bottom: 25px;
+	}
+}
+
+.fadeIn {
+	animation: forwards 2s fadeOut;
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0.4;
+	}
+}
+
+.scroll-target {
+	position: absolute;
+	top: 0;
+	height: 100vh;
+}

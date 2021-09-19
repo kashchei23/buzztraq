@@ -1,0 +1,25 @@
+@import '../../styles/_colors.scss';
+
+.footer {
+	text-align: center;
+	padding: 50px 0;
+	background-image: $secondary-darkblue-gradient;
+	&-logo {
+		width: 150px;
+		margin-top: 30px;
+	}
+	p {
+		color: $white;
+		line-height: 2.2;
+	}
+	&-footnote {
+		font-size: 12px;
+	}
+	&-socials {
+		margin: 48px 0;
+		&-icon {
+			color: $white;
+			margin: 0px 32px;
+		}
+	}
+}
