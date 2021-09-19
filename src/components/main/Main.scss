@@ -41,6 +41,7 @@
 		filter: $drop-shadow;
 		margin: 20px 0 -75px;
 		max-width: 220px;
+		height: auto;
 		@media (min-width: $breakpoint-tablet) {
 			max-width: 275px;
 		}
@@ -137,6 +138,7 @@
 
 	.tile-img {
 		width: 75px;
+		height: auto;
 		margin: 16px 0;
 	}
 
@@ -199,6 +201,7 @@
 	z-index: -1;
 	margin: 0 -24px;
 	width: 100%;
+	height: auto;
 	max-width: 400px;
 	@media (min-width: $breakpoint-tablet) {
 		max-width: 550px;
@@ -209,6 +212,7 @@
 	display: block;
 	max-width: 250px;
 	width: 90%;
+	height: auto;
 	margin: 40px auto;
 	filter: $drop-shadow-light;
 }
@@ -216,7 +220,7 @@
 .mid-page-hero {
 	width: 100%;
 	height: 500px;
-	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1625647530/Portfolio/hero%20mockups/BuzzTraq/buzztraq_footer_mockup_afhrpf.png');
+	background-image: url('https://res.cloudinary.com/obkidz/image/upload/v1631952376/buzztraq/buzztraq_footer_mockup_.webp');
 	background-repeat: no-repeat;
 	background-size: cover;
 	object-fit: cover;

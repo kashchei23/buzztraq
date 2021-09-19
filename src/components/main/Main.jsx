@@ -22,7 +22,7 @@ const Main = () => {
 						<p>Available on Android and IOS.</p>
 					</div>
 					<img
-						src='https://res.cloudinary.com/obkidz/image/upload/c_scale,w_500/v1631479060/Portfolio/hero%20mockups/BuzzTraq/buzztraq_mockup3_lj2j2z.png'
+						src='https://res.cloudinary.com/obkidz/image/upload/v1631941383/buzztraq/buzztraq_mockup3.png'
 						alt='buzztraq watch face mockup'
 						className='hero-content-img'
 					/>
@@ -62,7 +62,7 @@ const Main = () => {
 							</p>
 						</div>
 						<img
-							src='https://res.cloudinary.com/obkidz/image/upload/v1623093162/Portfolio/hero%20mockups/BuzzTraq/buzztraq_mockup-03_yerj1y.png'
+							src='https://res.cloudinary.com/obkidz/image/upload/v1631941383/buzztraq/buzztraq_mockup3.png'
 							alt='buzztraq watch face mockup'
 							className='feature-watch-still'
 						/>
@@ -80,7 +80,7 @@ const Main = () => {
 							</p>
 						</div>
 						<img
-							src='https://res.cloudinary.com/obkidz/image/upload/v1631244511/Portfolio/hero%20mockups/BuzzTraq/iphone_buzz_tetd4o.png'
+							src='https://res.cloudinary.com/obkidz/image/upload/v1631941383/buzztraq/buzz_iphone.png'
 							alt='buzztraq phone app mockup'
 							className='feature-phone-still'
 						/>
@@ -95,7 +95,7 @@ const Main = () => {
 					<div className='tile-container'>
 						<div className='tile'>
 							<img
-								src='https://res.cloudinary.com/obkidz/image/upload/v1631156594/Portfolio/hero%20mockups/BuzzTraq/graph_fmlnvk.png'
+								src='https://res.cloudinary.com/obkidz/image/upload/v1631941383/buzztraq/graph.png'
 								alt='feature icon'
 								className='tile-img'
 							/>
@@ -103,7 +103,7 @@ const Main = () => {
 						</div>
 						<div className='tile'>
 							<img
-								src='https://res.cloudinary.com/obkidz/image/upload/v1631152274/Portfolio/hero%20mockups/BuzzTraq/watch_czk4la.png'
+								src='https://res.cloudinary.com/obkidz/image/upload/v1631941383/buzztraq/watch.png'
 								alt='feature icon'
 								className='tile-img'
 							/>
@@ -111,7 +111,7 @@ const Main = () => {
 						</div>
 						<div className='tile'>
 							<img
-								src='https://res.cloudinary.com/obkidz/image/upload/v1631153174/Portfolio/hero%20mockups/BuzzTraq/community2_iyki5d.png'
+								src='https://res.cloudinary.com/obkidz/image/upload/v1631941382/buzztraq/community2.png'
 								alt='feature icon'
 								className='tile-img'
 							/>
@@ -131,7 +131,7 @@ const Main = () => {
 			</div>
 			<section className='final-cta'>
 				<img
-					src='https://res.cloudinary.com/obkidz/image/upload/v1623093162/Portfolio/hero%20mockups/BuzzTraq/buzztraq_mockup-01_yenjzj.png'
+					src='https://res.cloudinary.com/obkidz/image/upload/v1631941383/buzztraq/buzztraq_mockup-01.png'
 					alt='buzztraq watch face mockup'
 					className='final-cta-img'
 				/>

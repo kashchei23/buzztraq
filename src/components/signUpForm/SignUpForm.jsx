@@ -8,13 +8,14 @@ import {
 	formatPhoneNumber,
 } from '../../utility/formValidation';
 
+const initialPhoneState = '';
+
 const initialUserState = {
 	name: '',
 	email: '',
 	checkbox: false,
 };
 
-const initialPhoneState = '';
 const SignUpForm = () => {
 	const [user, setUser] = useState(initialUserState);
 	const [phone, setPhone] = useState(initialPhoneState);
@@ -24,124 +25,85 @@ const SignUpForm = () => {
 	const [phoneIsValid, setPhoneIsValid] = useState(false);
 	const [emailIsValid, setEmailIsValid] = useState(false);
 	const [isSubmitted, setSubmitted] = useState(false);
-	const activeInput = document.activeElement;
 	const phoneRef = useRef(null);
-	const myRef = useRef('');
+	const inputRef = useRef('');
 	const labelRefs = useRef([]);
 	labelRefs.current = [];
 
-	useEffect(() => {
-		setPhoneIsValid(validatePhoneNumber(phone));
-	}, [phone, phoneIsValid]);
-
-	useEffect(() => {
-		setEmailIsValid(validateEmail(user.email));
-	}, [user.email, emailIsValid]);
-
-	useEffect(() => {
-		if (isFocused) {
-			animatePlaceholder(myRef.current.name);
-		} else if (!isFocused && myRef.current.value === '') {
-			removePlaceholderAnimation(myRef.current.name);
-		}
-	}, [activeInput, isFocused, myRef]);
-	//* REMOVES DASHES FROM PHONE NUMBER FOR USER EDITING
-	useEffect(() => {
-		if (
-			isFocused &&
-			myRef.current.name === 'phone' &&
-			myRef.current.value !== ''
-		) {
-			setPhone(myRef.current.value.replace(/-/g, ''));
-		}
-	}, [isFocused, myRef]);
-
-	//* ADDS DASHES TO PHONE NUMBER
-	useEffect(() => {
-		const formattedNumber = formatPhoneNumber(phone);
-		if (phoneIsValid && !isFocused) {
-			setPhone(formattedNumber);
-		}
-	}, [phone, phoneIsValid, isFocused]);
-
+	//* Access label elements for manipulation
 	const getRefs = (el) => {
 		if (el && !labelRefs.current.includes(el)) {
 			labelRefs.current.push(el);
 		}
 	};
 
-	//* APPLY SLIDE UP EFFECT TO INPUT PLACEHOLDER TEXT
-	const animatePlaceholder = (inputName) => {
+	//* Applies slide up effect to input label text
+	const animateLabel = (inputName) => {
 		for (let i = 0; i < labelRefs.current.length; i++) {
 			const labelName = labelRefs.current[i].dataset.name;
 			const label = labelRefs.current[i];
 			if (labelName === inputName) {
-				label.setAttribute('class', 'label label-animated');
+				return label.setAttribute('class', 'label label-animated');
 			}
 		}
 	};
 
-	//* APPLY SLIDE UP EFFECT TO INPUT PLACEHOLDER TEXT
-	const removePlaceholderAnimation = (inputName) => {
+	//* Removes slide up effect from input label text
+	const removeLabelAnimation = (inputName) => {
 		for (let i = 0; i < labelRefs.current.length; i++) {
 			const labelName = labelRefs.current[i].dataset.name;
 			const label = labelRefs.current[i];
 			if (labelName === inputName) {
-				label.setAttribute('class', 'label');
+				return label.setAttribute('class', 'label');
 			}
 		}
 	};
 
-	//* SET STATES OF INPUT VALUES
+	//* Sets state for input values
 	const handleChange = (e) => {
 		let value;
-		switch (e.target.type) {
-			case 'checkbox':
-				value = e.target.checked;
-				setUser({ ...user, [e.target.name]: value });
-				break;
-			case 'email':
-			case 'text':
-				value = e.target.value;
-				setUser({ ...user, [e.target.name]: value });
-				break;
-			case 'tel':
-				const MAXLENGTH = 11;
-				value = e.target.value;
-				if (value.length > MAXLENGTH) value = value.slice(0, MAXLENGTH);
-				setPhone(value);
-				break;
-			default:
-				value = '';
-				break;
+		if (e.target.type === 'checkbox') {
+			value = e.target.checked;
+			setUser({ ...user, [e.target.name]: value });
+		}
+		if (e.target.type === 'email' || 'text') {
+			value = e.target.value;
+			setUser({ ...user, [e.target.name]: value });
+		}
+		if (e.target.type === 'tel') {
+			const MAXLENGTH = 11;
+			value = e.target.value;
+			if (value.length > MAXLENGTH) value = value.slice(0, MAXLENGTH);
+			setPhone(value);
 		}
 		return value;
 	};
 
+	//* Handles form submission & input status message based on validation checks
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (validateEmail(user.email) && validatePhoneNumber(phone)) {
 			setSubmitted(!isSubmitted);
 		} else {
-			displayStatusMsg(myRef.current.name, myRef.current.value);
+			displayStatusMsg(inputRef.current.name, inputRef.current.value);
 		}
 	};
 
-	//* FOCUS
+	//* Sets state of focus when user enters input field
 	const handleFocus = (e) => {
-		myRef.current = e.target;
+		inputRef.current = e.target;
 		setIsFocused(true);
-		console.log(myRef.current);
 	};
 
-	//* BLUR
+	//* Sets state of focus when user leaves input field
 	const handleBlur = () => {
 		setIsFocused(false);
-		if (myRef.current.value) {
-			displayStatusMsg(myRef.current.name, myRef.current.value);
+		if (inputRef.current.value) {
+			displayStatusMsg(inputRef.current.name, inputRef.current.value);
 		}
 	};
 
+	//* Displays status of user input
 	const displayStatusMsg = (inputName) => {
 		if (inputName === 'phone') {
 			setInputStatusMsg(
@@ -166,6 +128,44 @@ const SignUpForm = () => {
 	const scrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
+
+	//* Validates phone number as user enters input
+	useEffect(() => {
+		setPhoneIsValid(validatePhoneNumber(phone));
+	}, [phone, phoneIsValid]);
+
+	//* Validates email address as user enters input
+	useEffect(() => {
+		setEmailIsValid(validateEmail(user.email));
+	}, [user.email, emailIsValid]);
+
+	//* Adds & removes label animation dependent on input field focus
+	useEffect(() => {
+		if (isFocused) {
+			animateLabel(inputRef.current.name);
+		} else if (!isFocused && inputRef.current.value === '') {
+			removeLabelAnimation(inputRef.current.name);
+		}
+	}, [isFocused, inputRef]);
+
+	//* Removes dashes from phone number and sets state on input focus
+	useEffect(() => {
+		if (
+			isFocused &&
+			inputRef.current.name === 'phone' &&
+			inputRef.current.value !== ''
+		) {
+			setPhone(inputRef.current.value.replace(/-/g, ''));
+		}
+	}, [isFocused, inputRef]);
+
+	//* Adds dashes to phone number and sets state on input blur
+	useEffect(() => {
+		const formattedNumber = formatPhoneNumber(phone);
+		if (phoneIsValid && !isFocused) {
+			setPhone(formattedNumber);
+		}
+	}, [phone, phoneIsValid, isFocused]);
 
 	return (
 		<>
@@ -264,7 +264,7 @@ const SignUpForm = () => {
 						</button>
 					</form>
 					<img
-						src='https://res.cloudinary.com/obkidz/image/upload/v1631479060/Portfolio/hero%20mockups/BuzzTraq/buzztraq_mockup3_lj2j2z.png'
+						src='https://res.cloudinary.com/obkidz/image/upload/v1631941383/buzztraq/buzztraq_mockup3.png'
 						alt='buzztraq watch mockup'
 						className='signup-img'
 					/>
