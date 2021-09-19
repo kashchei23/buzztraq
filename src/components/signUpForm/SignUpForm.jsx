@@ -29,6 +29,7 @@ const SignUpForm = () => {
 	const inputRef = useRef('');
 	const labelRefs = useRef([]);
 	labelRefs.current = [];
+	const checkRef = useRef(false);
 
 	//* Access label elements for manipulation
 	const getRefs = (el) => {
@@ -59,13 +60,13 @@ const SignUpForm = () => {
 		}
 	};
 
+	const toggleCheckBox = (e) => {
+		setUser({ ...user, checkbox: e.target.checked });
+	};
+
 	//* Sets state for input values
 	const handleChange = (e) => {
 		let value;
-		if (e.target.type === 'checkbox') {
-			value = e.target.checked;
-			setUser({ ...user, [e.target.name]: value });
-		}
 		if (e.target.type === 'email' || 'text') {
 			value = e.target.value;
 			setUser({ ...user, [e.target.name]: value });
@@ -132,12 +133,12 @@ const SignUpForm = () => {
 	//* Validates phone number as user enters input
 	useEffect(() => {
 		setPhoneIsValid(validatePhoneNumber(phone));
-	}, [phone, phoneIsValid]);
+	}, [phone]);
 
 	//* Validates email address as user enters input
 	useEffect(() => {
 		setEmailIsValid(validateEmail(user.email));
-	}, [user.email, emailIsValid]);
+	}, [user.email]);
 
 	//* Adds & removes label animation dependent on input field focus
 	useEffect(() => {
@@ -251,10 +252,14 @@ const SignUpForm = () => {
 							</div>
 						</div>
 						<input
+							ref={checkRef}
 							type='checkbox'
 							name='checkbox'
-							checked={user.checkbox}
-							onChange={handleChange}
+							// defaultChecked={user.checkbox}
+							// checked={user.checkbox}
+							// onChange={handleChange}
+							// onFocus={handleFocus}
+							onClick={toggleCheckBox}
 						/>
 						<label className='checkbox-label'>
 							Subscribe to our newsletter
