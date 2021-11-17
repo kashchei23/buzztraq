@@ -19,7 +19,7 @@ const NavBar = () => {
 			<nav className='navBar'>
 				<Link to='/' onClick={scrollToTop}>
 					<img
-						src='https://res.cloudinary.com/obkidz/image/upload/v1631941382/buzztraq/buzz-logo-dark.png'
+						src='https://res.cloudinary.com/obkidz/image/upload/v1637118669/buzztraq/buzz-mark-highlight_tl05oq.svg'
 						alt='buzztraq logo'
 						className={`navBar-logo ${menuIsOpen ? 'navBar-logo-fixed' : ''}`}
 					/>
